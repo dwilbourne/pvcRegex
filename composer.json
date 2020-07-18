@@ -1,0 +1,33 @@
+{
+	"name": "pvc/regex",
+	"description": "pvc regex library",
+	"type": "project",
+	"authors": [
+		{
+			"name": "Doug Wilbourne",
+			"email": "dougwilbourne@gmail.com"
+		}
+	],
+	"license": "MIT",
+	"config": {
+		"php": "7.4.3"
+	},
+	"autoload": {
+		"psr-4": {
+			"pvc\\": "src/",
+			"tests\\": "tests/"
+		}
+	},
+	"require": {
+		"pvc/msg": "dev-master",
+		"pvc/err": "dev-master"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^8",
+		"mockery/mockery": "dev-master",
+		"squizlabs/php_codesniffer": "^3.5",
+		"friendsofphp/php-cs-fixer": "3.0.x-dev",
+		"phpstan/phpstan": "^0.12.25",
+		"pvc/testing-traits": "dev-master"
+	}
+}

@@ -19,6 +19,7 @@
 		}
 	},
 	"require": {
+		"pvc/interfaces": "@dev",
 		"pvc/msg": "dev-master",
 		"pvc/err": "dev-master"
 	},

@@ -6,7 +6,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'pvcErr'
+project = 'pvcRegex'
 copyright = '2023, Doug Wilbourne'
 author = 'Doug Wilbourne'
 

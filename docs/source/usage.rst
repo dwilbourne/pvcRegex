@@ -16,7 +16,7 @@ For example,::
     $fooMatch = $regex->getMatch[1];
 
 The Regex object also has an attribute regarding case-sensitivity.  setCaseSensitive sets the value, isCaseSensitive
-retrives the value.
+retrieves the value.
 
 There are three static methods in the class that can be useful. One is validatePattern, which returns a bool given a
 pattern.  The other is escapeString.  Under the covers, this is preg_quote.  In my view, preg_quote is entirely

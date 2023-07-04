@@ -21,8 +21,7 @@ Design Points
 
 * Incorporates a label for each regex that can be useful in creating a message after the metch method is run.
   
-* Provides static methods for a couple of common tasks such as validating a regex and properly escaping a regex
-string that was generated at runtime.
+* Provides static methods for a couple of common tasks such as validating a regex and properly escaping a regex string that was generated at runtime.
 
 
 

@@ -16,7 +16,7 @@
 		"psr-4": {
 			"pvc\\regex\\": "src/",
 			"pvcTests\\regex\\": "tests/",
-			"pvcExample\\regex\\": "example"
+			"pvcExamples\\regex\\": "examples/"
 		}
 	},
 	"require": {

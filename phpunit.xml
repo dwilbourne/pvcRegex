@@ -15,7 +15,7 @@
   <logging/>
   <testsuites>
     <testsuite name="src_tests">
-      <directory>tests\*</directory>
+      <directory>tests*</directory>
     </testsuite>
   </testsuites>
 </phpunit>

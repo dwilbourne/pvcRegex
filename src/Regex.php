@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace pvc\regex;
 
+use pvc\interfaces\regex\RegexInterface;
 use pvc\regex\err\RegexBadPatternException;
 use pvc\regex\err\RegexInvalidDelimiterException;
 use pvc\regex\err\RegexInvalidMatchIndexException;
@@ -22,7 +23,7 @@ use Throwable;
  *
  */
 
-class Regex
+class Regex implements RegexInterface
 {
 
     /**
@@ -93,7 +94,7 @@ class Regex
      *
      */
 
-    public function getPattern(): ?string
+    public function getPattern(): string
     {
         return $this->pattern ?? '';
     }

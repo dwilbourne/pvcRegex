@@ -19,6 +19,7 @@
 			"pvcExamples\\regex\\": "examples/"
 		}
 	},
+	"minimum-stability": "dev",
 	"require": {
 		"pvc/interfaces": "*",
 		"pvc/err": "*"

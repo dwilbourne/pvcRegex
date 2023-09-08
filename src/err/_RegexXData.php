@@ -31,9 +31,9 @@ class _RegexXData extends XDataAbstract implements XDataInterface
     public function getXMessageTemplates(): array
     {
         return [
-            RegexBadPatternException::class => 'Pattern ${patternWithDelimiters} is not a valid regular expression.',
+            RegexBadPatternException::class => 'Pattern ${badPattern} is not a valid regular expression.',
             RegexInvalidDelimiterException::class => 'delimiter must be a single char, not alphanumeric, not whitespace and not a backslash.',
-            RegexInvalidMatchIndexException::class => 'match index ${index}: no such index in the matches array.',
+            RegexInvalidMatchIndexException::class => 'match index ${badIndex}: no such index in the matches array.',
 
         ];
     }

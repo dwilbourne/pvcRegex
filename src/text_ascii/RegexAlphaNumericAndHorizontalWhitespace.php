@@ -20,6 +20,7 @@ class RegexAlphaNumericAndHorizontalWhitespace extends Regex
     {
         $label = 'alphanumeric or a horizontal whitespace character';
         $pattern = '/^[a-zA-Z0-9\h]*$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

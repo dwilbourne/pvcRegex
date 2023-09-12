@@ -43,7 +43,7 @@ class Regex implements RegexInterface
      * The matches array is not settable externally - it can only be populated as a result of
      * running the match method in this class.
      *
-     * @var array<mixed> $matches
+     * @var array<string> $matches
      *
      */
 
@@ -57,12 +57,6 @@ class Regex implements RegexInterface
      */
     protected string $label;
     
-    public function __construct(string $pattern, string $label)
-    {
-        $this->setPattern($pattern);
-        $this->setLabel($label);
-    }
-
     /**
      *
      * @function setPattern();
@@ -134,17 +128,13 @@ class Regex implements RegexInterface
     /**
      * @function getMatch()
      *
+     * @param array-key $index
      * $index can be numeric or a string depending on whether you used a named subpattern or not.
-     * @param int|string $index
-     *
-     * returns false if there is no such index set, returns a string if the $matchAll property is false
-     * otherwise returns an array
-     * @return string|array|false
-     *
+     * @return string
      * @throws RegexInvalidMatchIndexException
      */
 
-    public function getMatch(int|string $index): bool|array|string
+    public function getMatch(int|string $index): string
     {
         if (!isset($this->matches[$index])) {
             throw new RegexInvalidMatchIndexException($index);
@@ -155,7 +145,7 @@ class Regex implements RegexInterface
     /**
      * @function getMatches()
      *
-     * @return array
+     * @return array<string>
      *
      */
 

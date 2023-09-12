@@ -20,8 +20,9 @@ class RegexTrueFalse extends Regex
     public function __construct()
     {
         $pattern = '/^(true|false)$/';
+        $this->setPattern($pattern);
         $label = 'true / false';
-        parent::__construct($pattern, $label);
+        $this->setLabel($label);
     }
 
 

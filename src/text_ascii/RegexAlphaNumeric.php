@@ -24,6 +24,7 @@ class RegexAlphaNumeric extends Regex
          * $patternWithDelimiters = '/^[:alnum:]*$/';
          */
         $pattern = '/^[a-zA-Z0-9]*$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

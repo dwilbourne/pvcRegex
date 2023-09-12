@@ -25,6 +25,7 @@ class RegexAlphabetic extends Regex
          * $pattern = '/^[:alpha:]*$/';
          */
         $pattern = '/^[a-zA-Z]*$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

@@ -33,6 +33,7 @@ class RegexXMLElementName extends Regex
         $pattern .= $pat_first_character_must_be_alpha;
         $pattern .= $pat_contains_only_letters_digits_underscores_hyphens_periods_and_no_whitespace;
         $pattern .= '$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

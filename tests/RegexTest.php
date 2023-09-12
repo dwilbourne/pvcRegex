@@ -13,25 +13,24 @@ use pvc\regex\Regex;
  */
 class RegexTest extends TestCase
 {
-    protected string $label;
+    protected Regex $regex;
 
     public function setUp(): void
     {
-        $this->label = 'test pattern';
+        $this->regex = new Regex();
     }
 
     /**
      * testGetPatternReturnsThePatternWhichWasSet
-     * @covers \pvc\regex\Regex::__construct
      * @covers \pvc\regex\Regex::setPattern
      * @covers \pvc\regex\Regex::getPattern
      */
     public function testGetPatternReturnsThePatternWhichWasSet(): void
     {
         $pattern = '/foo/';
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
         $msg = 'getPattern did not return the same value that was set immediately prior to its being called.';
-        self::assertSame($pattern, $regex->getPattern(), $msg);
+        self::assertSame($pattern, $this->regex->getPattern(), $msg);
     }
 
     /**
@@ -41,10 +40,10 @@ class RegexTest extends TestCase
      */
     public function testGetLabelReturnsLabelWhichWasSet(): void
     {
-        $pattern = '/foo/';
-        $regex = new Regex($pattern, $this->label);
+        $label = 'test pattern';
+        $this->regex->setLabel($label);
         $msg = 'getLabel did not return the same value that was set immediately prior to its being called.';
-        self::assertSame($this->label, $regex->getLabel(), $msg);
+        self::assertSame($label, $this->regex->getLabel(), $msg);
     }
 
     /**
@@ -66,8 +65,8 @@ class RegexTest extends TestCase
     {
         $pattern = '/(\.php)$/';
         $msg = 'failed to assert $patternWithDelimiters is a valid regex patternWithDelimiters.';
-        $regex = new Regex($pattern, $this->label);
-        self::assertTrue($regex->validatePattern($pattern), $msg);
+        $this->regex->setPattern($pattern);
+        self::assertTrue($this->regex->validatePattern($pattern), $msg);
     }
 
     /**
@@ -89,11 +88,11 @@ class RegexTest extends TestCase
     public function testSetPatternThrowsBadPatternExceptionWithBadPattern(): void
     {
         $pattern = '/(\.php)$/';
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
         $badPattern = '{morn/';
         self::expectException(RegexBadPatternException::class);
-        $regex->setPattern($badPattern);
+        $this->regex->setPattern($badPattern);
     }
 
     public function validateDelimiterDataProvider(): array
@@ -163,12 +162,12 @@ class RegexTest extends TestCase
     public function testSetGetCaseSensitive(): void
     {
         $pattern = '/foo/';
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
-        self::assertTrue($regex->isCaseSensitive());
+        self::assertTrue($this->regex->isCaseSensitive());
 
-        $regex->setCaseSensitive(false);
-        self::assertFalse($regex->isCaseSensitive());
+        $this->regex->setCaseSensitive(false);
+        self::assertFalse($this->regex->isCaseSensitive());
     }
 
     /**
@@ -181,10 +180,10 @@ class RegexTest extends TestCase
         $matchingSubject = 'foo';
         $nonMatchingSubject = 'baz';
 
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
-        self::assertTrue($regex->match($matchingSubject));
-        self::assertFalse($regex->match($nonMatchingSubject));
+        self::assertTrue($this->regex->match($matchingSubject));
+        self::assertFalse($this->regex->match($nonMatchingSubject));
     }
 
     /**
@@ -196,13 +195,13 @@ class RegexTest extends TestCase
         $pattern = '/foo/';
         $subject = 'Foo';
 
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
-        $regex->setCaseSensitive(true);
-        self::assertFalse($regex->match($subject));
+        $this->regex->setCaseSensitive(true);
+        self::assertFalse($this->regex->match($subject));
 
-        $regex->setCaseSensitive(false);
-        self::assertTrue($regex->match($subject));
+        $this->regex->setCaseSensitive(false);
+        self::assertTrue($this->regex->match($subject));
     }
 
     /**
@@ -214,11 +213,11 @@ class RegexTest extends TestCase
     {
         $subject = 'foo';
         $pattern = '/bar/';
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
-        self::assertFalse($regex->match($subject));
+        self::assertFalse($this->regex->match($subject));
         $this->expectException(RegexInvalidMatchIndexException::class);
-        $match = $regex->getMatch('baz');
+        $match = $this->regex->getMatch('baz');
     }
 
     /**
@@ -229,10 +228,10 @@ class RegexTest extends TestCase
     {
         $subject = 'foobarbaz';
         $pattern = '/(foo)(bar)(baz)/';
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
-        self::assertTrue($regex->match($subject));
-        $matches = $regex->getMatches();
+        self::assertTrue($this->regex->match($subject));
+        $matches = $this->regex->getMatches();
 
         self::assertSame($subject, $matches[0]);
         self::assertSame('foo', $matches[1]);
@@ -249,16 +248,16 @@ class RegexTest extends TestCase
     public function testNamedSubpatternRegex(): void
     {
         $pattern = "/^(?'leadingDigits'[1-9]\d{0,2}),((?'nextDigits'\d{3}),)*(?'finalDigits'\d{3})$/";
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
         $subject = '12,345,678,901,234';
-        self::assertTrue($regex->match($subject));
+        self::assertTrue($this->regex->match($subject));
 
-        self::assertEquals('12', $regex->getMatch('leadingDigits'));
+        self::assertEquals('12', $this->regex->getMatch('leadingDigits'));
         // this fails - nextDigits consists only of the last piece of the subject which matches the subpattern,
         // e.g. nextDigits = '901'
-        self::assertNotEquals('345678901', $regex->getMatch('nextDigits'));
-        self::assertEquals('234', $regex->getMatch('finalDigits'));
+        self::assertNotEquals('345678901', $this->regex->getMatch('nextDigits'));
+        self::assertEquals('234', $this->regex->getMatch('finalDigits'));
     }
 
     /**
@@ -268,17 +267,17 @@ class RegexTest extends TestCase
     public function testMatchVersusMatchAll(): void
     {
         $pattern = '/\+/';
-        $regex = new Regex($pattern, $this->label);
+        $this->regex->setPattern($pattern);
 
         $subject = '1+2+3+4+5';
-        self::assertTrue($regex->match($subject));
-        self::assertEquals(1, count($regex->getMatches()));
+        self::assertTrue($this->regex->match($subject));
+        self::assertEquals(1, count($this->regex->getMatches()));
 
         $matchAll = true;
-        self::assertTrue($regex->match($subject, $matchAll));
+        self::assertTrue($this->regex->match($subject, $matchAll));
         // preg_match_all returns an array of arrays
         // in this instance, the matches are stored in the first element of the matches array
-        $matches = $regex->getMatch(0);
+        $matches = $this->regex->getMatch(0);
         $matches = (array) $matches ?: [];
         self::assertEquals(4, count($matches));
     }

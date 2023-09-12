@@ -20,6 +20,7 @@ class RegexVisibleCharsPlusHorizontalWhitespace extends Regex
     {
         $label = 'visible (printable) chars plus horizontal whitespace chars';
         $pattern = '/^[ -~\h]*$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

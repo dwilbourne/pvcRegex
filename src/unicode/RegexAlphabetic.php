@@ -31,6 +31,7 @@ class RegexAlphabetic extends Regex
          * the u modifier after the pattern tells the engine to treat both the pattern and the subject as UTF-8
          */
         $pattern = '/^(\p{L}\p{M}*)*$/u';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

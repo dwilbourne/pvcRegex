@@ -19,6 +19,7 @@ class RegexPositiveIntegerSimple extends Regex
     {
         $label = 'simple positive integers (no grouping separator, decimal point, plus/minus signs)';
         $pattern = '/^(0|[1-9][0-9]*)$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

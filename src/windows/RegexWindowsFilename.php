@@ -43,12 +43,13 @@ class RegexWindowsFilename extends Regex
 
         $label = 'windows filename';
 
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 
     /**
      * getIllegalFilenames
-     * @return array
+     * @return array<string>
      */
     private function getIllegalFilenames(): array
     {

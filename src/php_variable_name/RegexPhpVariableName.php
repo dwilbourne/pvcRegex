@@ -16,6 +16,7 @@ class RegexPhpVariableName extends Regex
     {
         $label = 'php variable or label name';
         $pattern = '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

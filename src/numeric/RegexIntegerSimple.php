@@ -18,6 +18,7 @@ class RegexIntegerSimple extends Regex
     {
         $label = 'simple integers (no grouping separator or plus signs)';
         $pattern = '/^(0|\-?[1-9][0-9]*)$/';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

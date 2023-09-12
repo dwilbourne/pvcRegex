@@ -18,6 +18,7 @@ class RegexYesNo extends Regex
     {
         $pattern = '/^(yes|no)$/';
         $label = 'yes / no';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

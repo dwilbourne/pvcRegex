@@ -34,6 +34,7 @@ class RegexAlphaNumeric extends Regex
          * the u modifier tells the engine to treat the subject and the pattern as UTF-8
          */
         $pattern = '/^((\p{L}\p{M}*)|\p{Nd})*$/u';
-        parent::__construct($pattern, $label);
+        $this->setPattern($pattern);
+        $this->setLabel($label);
     }
 }

@@ -130,11 +130,11 @@ class Regex implements RegexInterface
      *
      * @param array-key $index
      * $index can be numeric or a string depending on whether you used a named subpattern or not.
-     * @return string
+     * @return array<string>|string
      * @throws RegexInvalidMatchIndexException
      */
 
-    public function getMatch(int|string $index): string
+    public function getMatch(int|string $index): array|string
     {
         if (!isset($this->matches[$index])) {
             throw new RegexInvalidMatchIndexException($index);

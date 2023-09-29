@@ -19,7 +19,7 @@ class RegexTrueFalse extends Regex
      */
     public function __construct()
     {
-        $pattern = '/^(true|false)$/';
+        $pattern = '/^(true|false)$/i';
         $this->setPattern($pattern);
         $label = 'true / false';
         $this->setLabel($label);

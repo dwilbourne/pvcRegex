@@ -6,10 +6,10 @@
 
 declare(strict_types=1);
 
-namespace pvcTests\regex\windows;
+namespace pvcTests\regex\filename;
 
 use PHPUnit\Framework\TestCase;
-use pvc\regex\windows\RegexWindowsFilename;
+use pvc\regex\filename\RegexWindowsFilename;
 use pvc\testingutils\testingTraits\RandomStringGeneratorTrait;
 
 /**
@@ -26,8 +26,8 @@ class RegexWindowsFilenameTest extends TestCase
      * @param bool $allowFileExtension
      * @param bool $expectedResult
      * @dataProvider dataProviderIllegalChars
-     * @covers \pvc\regex\windows\RegexWindowsFilename::__construct
-     * @covers \pvc\regex\windows\RegexWindowsFilename::getIllegalChars
+     * @covers       \pvc\regex\filename\RegexWindowsFilename::__construct
+     * @covers       \pvc\regex\filename\RegexWindowsFilename::getIllegalChars
      */
 
     public function testIllegalChars(string $subject, bool $allowFileExtension, bool $expectedResult) : void
@@ -59,8 +59,8 @@ class RegexWindowsFilenameTest extends TestCase
      * @param string $subject
      * @param bool $expectedResult
      * @dataProvider dataProviderIllegalFilenames
-     * @covers \pvc\regex\windows\RegexWindowsFilename::__construct
-     * @covers \pvc\regex\windows\RegexWindowsFilename::getIllegalFilenames
+     * @covers       \pvc\regex\filename\RegexWindowsFilename::__construct
+     * @covers       \pvc\regex\filename\RegexWindowsFilename::getIllegalFilenames
      */
     public function testIllegalFilenames(string $subject, bool $expectedResult) : void
     {
@@ -89,18 +89,5 @@ class RegexWindowsFilenameTest extends TestCase
             'LPT10' => ['LPT10', true],
             'LPT10.txt' => ['LPT1.txt', true],
         ];
-    }
-
-    /**
-     * testMaxFilenameLength
-     * @covers \pvc\regex\windows\RegexWindowsFilename::__construct
-     */
-    public function testMaxFilenameLength() : void
-    {
-        $allowFileExtension = true;
-        $regex = new RegexWindowsFilename($allowFileExtension);
-        $length = 257;
-        $badFileName = $this->randomString($length);
-        self::assertFalse($regex->match($badFileName));
     }
 }

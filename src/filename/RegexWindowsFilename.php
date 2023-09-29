@@ -6,7 +6,7 @@
 
 declare(strict_types = 1);
 
-namespace pvc\regex\windows;
+namespace pvc\regex\filename;
 
 use pvc\regex\err\RegexInvalidDelimiterException;
 use pvc\regex\Regex;
@@ -34,9 +34,8 @@ class RegexWindowsFilename extends Regex
         $pattern = '';
         $pattern .= '/^(?!(?i)(' . implode('|', $badFileNames) . '))';
 
-        // illegal characters are coded as a negative character class.  The max number of characters in
-        // a filename is, I think, 256.
-        $pattern .= '[^' . $this->getIllegalChars($allowFileExtension) . ']{1,256}';
+        // illegal characters are coded as a negative character class.
+        $pattern .= '[^' . $this->getIllegalChars($allowFileExtension) . ']*';
 
         // assert end of subject / end of pattern
         $pattern .= '$/';

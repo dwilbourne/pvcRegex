@@ -14,6 +14,7 @@ use pvc\regex\boolean\RegexTrueFalse;
  */
 class RegexTrueFalseTest extends TestCase
 {
+    protected RegexTrueFalse $regex;
 
     public function setUp(): void
     {

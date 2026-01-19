@@ -8,11 +8,10 @@ namespace pvcTests\regex\numeric;
 
 use PHPUnit\Framework\TestCase;
 use pvc\regex\numeric\RegexIntegerSimple;
-use pvc\regex\Regex;
 
 class RegexIntegerSimpleTest extends TestCase
 {
-    protected Regex $regex;
+    protected RegexIntegerSimple $regex;
 
     public function setUp() : void
     {
